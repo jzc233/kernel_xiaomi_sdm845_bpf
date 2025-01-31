@@ -222,6 +222,7 @@ struct tcp_sock {
 	u8	rate_app_limited:1,  /* rate_{delivered,interval_us} limited? */
 		fastopen_connect:1, /* FASTOPEN_CONNECT sockopt */
 		is_sack_reneg:1,    /* in recovery from loss with SACK reneg? */
+		chrono_type:2,	/* current chronograph type */
 		unused:5;
 	u8	nonagle     : 4,/* Disable Nagle algorithm?             */
 		thin_lto    : 1,/* Use linear timeouts for thin streams */
@@ -236,6 +237,8 @@ struct tcp_sock {
 		syn_data_acked:1,/* data in SYN is acked by SYN-ACK */
 		save_syn:1,	/* Save headers of SYN packet */
 		is_cwnd_limited:1;/* forward progress limited by snd_cwnd? */
+	u32	chrono_start;	/* Start time in jiffies of a TCP chrono */
+	u32	chrono_stat[3];	/* Time in jiffies for chrono_stat stats */
 	u32	tlp_high_seq;	/* snd_nxt at the time of TLP */
 
 /* RTT measurement */
@@ -448,5 +451,7 @@ static inline void tcp_saved_syn_free(struct tcp_sock *tp)
 
 int tcp_skb_shift(struct sk_buff *to, struct sk_buff *from, int pcount,
 		  int shiftlen);
+
+struct sk_buff *tcp_get_timestamping_opt_stats(const struct sock *sk);
 
 #endif	/* _LINUX_TCP_H */
