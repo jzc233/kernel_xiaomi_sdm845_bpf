@@ -2036,8 +2036,6 @@ static inline void tcp_listendrop(const struct sock *sk)
 
 enum hrtimer_restart tcp_pace_kick(struct hrtimer *timer);
 
-#endif /* _TCP_H */
-
 /* Call BPF_SOCK_OPS program that returns an int. If the return value
  * is < 0, then the BPF op failed (for example if the loaded BPF
  * program does not support the chosen operation or there is no BPF
@@ -2069,3 +2067,4 @@ static inline int tcp_call_bpf(struct sock *sk, int op)
 	return -EPERM;
 }
 #endif
+#endif /* _TCP_H */
