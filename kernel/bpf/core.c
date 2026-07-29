@@ -33,10 +33,13 @@
 #include <linux/nospec.h>
 
 #include <asm/barrier.h>
-#include <linux/nospec.h>
 #include <asm/unaligned.h>
 #ifndef __annotate_jump_table
 #define __annotate_jump_table
+#endif
+
+#ifndef barrier_nospec
+#define barrier_nospec() do { } while (0)
 #endif
 
 /* Registers */
