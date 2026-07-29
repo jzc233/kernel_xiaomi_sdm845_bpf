@@ -366,6 +366,8 @@ show_map_vma(struct seq_file *m, struct vm_area_struct *vma, int is_pid)
 	unsigned long start, end;
 	dev_t dev = 0;
 	const char *name = NULL;
+	/* Used by the SUSFS maps redirection patch applied during CI. */
+	char *spoofed_redirected_name __maybe_unused = NULL;
 
 	if (file) {
 		struct inode *inode = file_inode(vma->vm_file);
