@@ -33,6 +33,7 @@
 #include <linux/nospec.h>
 
 #include <asm/barrier.h>
+#include <linux/nospec.h>
 #include <asm/unaligned.h>
 #ifndef __annotate_jump_table
 #define __annotate_jump_table
