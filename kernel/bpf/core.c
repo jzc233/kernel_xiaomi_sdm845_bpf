@@ -34,6 +34,9 @@
 
 #include <asm/barrier.h>
 #include <asm/unaligned.h>
+#ifndef __annotate_jump_table
+#define __annotate_jump_table
+#endif
 
 /* Registers */
 #define BPF_R0	regs[BPF_REG_0]
